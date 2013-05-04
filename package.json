@@ -1,0 +1,24 @@
+{
+  "name": "buddy-minimal",
+  "version": "0.1.0",
+  "description": "A minimal test reporter for buddy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/buddyjs/buddy-minimal.git"
+  },
+  "keywords": [
+    "buddy",
+    "testing",
+    "reporter"
+  ],
+  "author": "Quildreen \"Sorella\" Motta",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "cli-color": "~0.2.2"
+  }
+}
