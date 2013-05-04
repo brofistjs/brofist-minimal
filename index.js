@@ -33,23 +33,19 @@ module.exports = function reporter(logger) { return function(report) {
     logger([].join.call(arguments, ' '))
   }
 
-  function pad(a, b) {
-    return a + b
-  }
-
   function describeException(result, i) {
-    var ex = result.exception
+    var ex      = result.exception
+    var heading = i + ') ' + result.test.fullTitle().join(' ')
 
-    return i + ') ' + ex.name + ': ' + ex.message
-    +      '\n' + ex.stack.split(/\r\n|\r|\n/)
-                          .map(pad('  '))
-                          .join('\n')
+    return colour.red(heading)
+         + '\n'
+         + colour.redBright(ex.stack)
   }
 
   function describeIgnored(results) {
     var ignored = results.ignored.length
 
-    return ignored?         ' (' + ignored + ' ignored)'
+    return ignored?         colour.blackBright('(' + ignored + ' ignored)')
     :      /* otherwise */  ''
   }
 
@@ -57,17 +53,19 @@ module.exports = function reporter(logger) { return function(report) {
     var failed  = results.failed.length
     var all     = results.all.length
 
-    log( colour.red(failed + ' of ' + all + ' failed.')
+    log( colour.red(failed + '/' + all + ' failed.')
        , describeIgnored(results))
 
+    log('\n')
     results.failed.map(describeException)
-                  .forEach(log)
+                  .forEach(function(a){ log(a) })
   }
 
   function describeSuccess(results) {
     var all = results.all.length
+    var passed = results.passed.length
 
-    log( colour.green('Success.')
+    log( colour.green('Success. ' + passed + '/' + all + ' tests.')
        , describeIgnored(results))
   }
 

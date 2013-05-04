@@ -24,7 +24,7 @@ spec.run(require('buddy-minimal')())
 And get back a minimal output:
 
 ```bash
-Success (1 test).
+Success. 1/1 tests.
 ```
 
 
