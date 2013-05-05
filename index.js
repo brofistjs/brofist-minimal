@@ -37,9 +37,9 @@ module.exports = function reporter(logger) { return function(report) {
     var ex      = result.exception
     var heading = i + ') ' + result.test.fullTitle().join(' ')
 
-    return colour.red(heading)
-         + '\n'
-         + colour.redBright(ex.stack)
+    return heading + ': ' + colour.red(ex)
+         + '\n\n'
+         + colour.blackBright(ex.stack.split(/\r\n|\r|\n/).slice(1).join('\n'))
   }
 
   function describeIgnored(results) {
@@ -59,6 +59,8 @@ module.exports = function reporter(logger) { return function(report) {
     log('\n')
     results.failed.map(describeException)
                   .forEach(function(a){ log(a) })
+
+    process.exit(1)
   }
 
   function describeSuccess(results) {
