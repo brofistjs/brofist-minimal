@@ -1,6 +1,6 @@
-/// Module buddy-minimal
+/// Module brofist-minimal
 //
-// A minimal reporter for Buddy.
+// A minimal reporter for Brofist.
 //
 //
 // Copyright (c) 2013 Quildreen Motta

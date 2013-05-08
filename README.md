@@ -1,6 +1,6 @@
-# buddy-minimal
+# brofist-minimal
 
-A minimal test reporter for Buddy. For humans.
+A minimal test reporter for Brofist. For humans.
 
 
 ## Example
@@ -8,7 +8,7 @@ A minimal test reporter for Buddy. For humans.
 Write your tests:
 
 ```js
-var spec = require('test-buddy')
+var spec = require('brofist')
 
 spec('Thou', function(shall) { 
   shall('pass!', function() { })
@@ -18,7 +18,7 @@ spec('Thou', function(shall) {
 Run the specs through the minimal reporter:
 
 ```js
-spec.run(require('buddy-minimal')())
+spec.run(require('brofist-minimal')())
 ```
 
 And get back a minimal output:
@@ -32,7 +32,7 @@ Success. 1/1 tests.
 
 Just grab it from NPM:
 
-    $ npm install buddy-minimal
+    $ npm install brofist-minimal
     
 
 ## Licence
