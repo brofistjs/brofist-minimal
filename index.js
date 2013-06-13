@@ -1,4 +1,4 @@
-/// Module brofist-minimal
+// # Module brofist-minimal
 //
 // A minimal reporter for Brofist.
 //
@@ -24,14 +24,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+// -- Dependencies -----------------------------------------------------
 var colour = require('cli-color')
 
+
+// -- Core implementation ---------------------------------------------
+// :: (...a -> ()) -> Report -> ()
 module.exports = function reporter(logger) { return function(report) {
 
   if (!logger)  logger = console.log.bind(console)
   function log() {
-    logger([].join.call(arguments, ' '))
-  }
+    logger([].join.call(arguments, ' ')) }
+
 
   function describeException(result, i) {
     var ex      = result.exception
@@ -39,15 +43,15 @@ module.exports = function reporter(logger) { return function(report) {
 
     return heading + ': ' + colour.red(ex)
          + '\n\n'
-         + colour.blackBright(ex.stack.split(/\r\n|\r|\n/).slice(1).join('\n'))
-  }
+         + colour.blackBright(ex.stack.split(/\r\n|\r|\n/).slice(1).join('\n')) }
+
 
   function describeIgnored(results) {
     var ignored = results.ignored.length
 
     return ignored?         colour.blackBright('(' + ignored + ' ignored)')
-    :      /* otherwise */  ''
-  }
+    :      /* otherwise */  '' }
+
 
   function describeFailure(results) {
     var failed  = results.failed.length
@@ -60,19 +64,18 @@ module.exports = function reporter(logger) { return function(report) {
     results.failed.map(describeException)
                   .forEach(function(a){ log(a) })
 
-    process.exit(1)
-  }
+    process.exit(1) }
+
 
   function describeSuccess(results) {
     var all = results.all.length
     var passed = results.passed.length
 
     log( colour.green('Success. ' + passed + '/' + all + ' tests.')
-       , describeIgnored(results))
-  }
+       , describeIgnored(results)) }
 
-  report.on('done', function(ev, results) {
+
+  report.signals.done.add(function(results) {
     return results.failed.length?  describeFailure(results)
-    :      /* otherwise */         describeSuccess(results)
-  })
+    :      /* otherwise */         describeSuccess(results) })
 }}
