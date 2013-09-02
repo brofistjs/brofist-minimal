@@ -1,4 +1,9 @@
-# brofist-minimal
+brofist-minimal
+===============
+
+[![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
+![Dependencies Status](https://david-dm.org/brofistjs/brofist.png)
+
 
 A minimal test reporter for Brofist. For humans.
 
